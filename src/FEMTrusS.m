@@ -1,24 +1,20 @@
-%% FEMTrusS - Finite Element Method 2D Truss Solver
+% Copyright 2022, Jorge M. Perez Zerpa. 
 %
-% The FEMTrusS is a minimal GNU-Octave script that allows to solve
-% 2D truss analysis problems using the Finite Element Method.
-% The code was developed for educational purposes and there is
-% NO WARRANTY at all regarding the quality of its results.
+% This file is part of FMTS.
 %
-% The code is distributed under the GPLv3 Free Software license and it was
-% developed for GNU Octave 4.4 by J.M. Perez Zerpa in August 2017, Facultad
-% de Ingenieria at Universidad de la Republica.
-%%
+% FMTS is free software: you can redistribute it and/or modify 
+% it under the terms of the GNU General Public License as published by 
+% the Free Software Foundation, either version 3 of the License, or 
+% (at your option) any later version. 
+%
+% FMTS is distributed in the hope that it will be useful, 
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+% GNU General Public License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with FMTS.  If not, see <https://www.gnu.org/licenses/>.
 
-clear all, close all
-
-%% 1- Input data
-% Input parameters of geometry and material of the truss.
-% Applied loads and fixed degrees of freedom (supports)
-%%
-
-%FMTrusSInput_ej1UT2
-FMTrusSInput_ej1Examen202112
 
 %% 2- Previous calculations and stiffness matrix assembly
 % Assembles the global stiffness matrix KG and computes the matrix for each element.
