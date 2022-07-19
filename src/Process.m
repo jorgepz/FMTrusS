@@ -20,6 +20,7 @@
 ForceIndepTerm      = zeros( 2*nnodes,1+hiperdegree);
 ForceIndepTerm(:,1) = - Fext  ;
 
+
 Meqred = Meq;
 
 virtualforces
@@ -32,6 +33,7 @@ end
 ForceIndepTerm
 x = Meqred \ ForceIndepTerm
 
+stop
 supportreactions = zeros(nfixeddofs, hiperdegree+1) ;
 
 supportreactions( isostaticsupports , : ) = x( 1:length(isostaticsupports) ,:)

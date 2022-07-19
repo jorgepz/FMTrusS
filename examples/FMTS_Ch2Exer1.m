@@ -41,13 +41,13 @@ unkndispdof = 1 ;
 % -----------------------------
 
 
-FMTrusSPreprocess
+Preprocess
 
 %% 3- Process
 % Equilibrium equations solved, flexibility matrix assembly and
 % virtual forces determined.
-FMTrusSProcess
+Process
 
 %% 4- Output
 % Plot of truss structure with reactions, normal forces and external loads.
-FMTrusSPlots
+Plots

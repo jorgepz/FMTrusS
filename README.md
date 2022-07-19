@@ -1,4 +1,4 @@
-# FMTS: a Force Method Truss Solver
+# FMTS: an UNDER-VALIDATION Force Method Truss Solver
 
 ## What is FMTS?
 
