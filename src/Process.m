@@ -15,25 +15,24 @@
 % You should have received a copy of the GNU General Public License
 % along with FMTS.  If not, see <https://www.gnu.org/licenses/>.
 
+fprintf('\n=== Process ===\n')
 
 # force states independent terms
-ForceIndepTerm      = zeros( 2*nnodes,1+hiperdegree);
+ForceIndepTerm      = zeros( 2*nnodes, 1+hiperdegree);
 ForceIndepTerm(:,1) = - Fext  ;
-
 
 Meqred = Meq;
 
 virtualforces
-
+stop
 for j=1:hiperdegree
   ForceIndepTerm(:,1+j) = -Meq(:,virtualforces(j)) ;
-  Meqred(:,virtualforces(j) ) = [] ;
+  Meqred(:, virtualforces(j) ) = [] ;
 end
 
 ForceIndepTerm
 x = Meqred \ ForceIndepTerm
 
-stop
 supportreactions = zeros(nfixeddofs, hiperdegree+1) ;
 
 supportreactions( isostaticsupports , : ) = x( 1:length(isostaticsupports) ,:)
@@ -47,7 +46,7 @@ end
 fprintf('The support reactions in the real and virtual states are:\n');
 supportreactions
 
-Ns = zeros(nelems,hiperdegree+1) ;
+Ns = zeros( nelems, hiperdegree+1 ) ;
 
 %~ Ns(  isostaticforceselem-length(isostaticsupports) , : ) = x( isostaticforceselem, : ) ;
 Ns(  isostaticforceselem- nfixeddofs , : ) = x( (length(isostaticsupports)+1):end, : ) ;
@@ -66,28 +65,31 @@ Ff = zeros( hiperdegree,           1) ;
 hiperdegree
 for i=1:hiperdegree
   for j = 1:hiperdegree
-    Kf(i,j) = sum( Ns(:,1+i).*Ns(:,1+j) ./ ( Youngs .* Areas ) .* Lengths ) ;
+    Kf(i,j) =   sum( Ns(:,1+i) .* Ns(:, 1+j) ./ ( Youngs .* Areas ) .* Lengths ) ;
   end
-  %
-  Ff(i) = - sum( Ns(:,1) .* Ns(:,1+i) ./ ( Youngs .* Areas ) .* Lengths ) ;
+  Ff(i)     = - sum( Ns(:,  1) .* Ns(:, 1+i) ./ ( Youngs .* Areas ) .* Lengths ) ;
 end
 
 Kf
 Ff
-
+% flexiblity system
 X = Kf \ Ff
 
 
-ResultReactions = supportreactions * [ 1; X]
-ResultNormalForces = Ns * [ 1 ; X ]
+ResultReactions = supportreactions * [ 1; X] ;
 
+ResultNormalForces = Ns * [ 1 ; X ] 
+
+% complete vector of BC external forces (reactions)
 Rext = zeros( 2*nnodes,1) ;
 Rext(fixeddofs) = ResultReactions ;
 
+% 
+Fextaux = zeros( 2*nnodes, 1 ) ;
+Fextaux( unkndispdof ) = 1 ;
 
-Fextaux = zeros(2*nnodes,1);
-Fextaux(unkndispdof) = 1 ;
-xaux = Meqred \ - Fextaux ;
+xaux = Meqred \ (- Fextaux) ;
+
 Nsaux = zeros( nelems ,1) ;
 Nsaux( isostaticforceselem- nfixeddofs ) = xaux ( (length(isostaticsupports)+1):end )
 

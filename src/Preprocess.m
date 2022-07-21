@@ -15,6 +15,16 @@
 % You should have received a copy of the GNU General Public License
 % along with FMTS.  If not, see <https://www.gnu.org/licenses/>.
 
+fprintf('\n===========================================\n  ')
+fprintf('\nWelcome to FMTS. Recall the hypotheses:\n  ')
+fprintf('\n    - Reactions are assumed positive in the corresponding x/y direction\n  ')
+
+fprintf('\n=== Preprocess ===\n')
+
+% --------------------------------------------------------------------
+
+
+
 
 % --- compute lengths and inclination of undeformed elements ---
 Lengths   =  sqrt ( sum( (  NodsCoord( ElemConec(:,2),:) - ...
@@ -33,11 +43,11 @@ nfixeddofs = length(fixeddofs) ;
 
 # computes the total number of force unknowns (element stress and reactions)
 nforceunknowns = nfixeddofs + nelems ;
-hiperdegree = nforceunknowns - 2*nnodes ;
+hiperdegree = nforceunknowns - 2*nnodes
 
 
 % compute free dofs
-freedofs = 1:(2*nnodes) ; freedofs(fixeddofs) = [] ;
+freedofs = 1:(2*nnodes) ; freedofs(fixeddofs) = [] 
 
 # row vector with the indexes of the dofs of the supports left in the isostatic structure
 isostaticsupports = 1:nfixeddofs ;
@@ -54,28 +64,33 @@ else
   virtualforces  = [ virtualforceselements+nfixeddofs ] ;
 end
 
+virtualforces
+
 isostaticforceselem = (1:nelems) ;
 isostaticforceselem( virtualforceselements ) = [] ;
 isostaticforceselem = isostaticforceselem + nfixeddofs ;
 
-# row vector with the dofs and elements present in the isostatic structure
-isostaticforces = [ isostaticsupports isostaticforceselem ] ;
+% row vector with the corresponding number of 
+% force unkowns (first # of fixed dofs and then
+% elements) present in the isostatic fundamental structure
+isostaticforces = [ isostaticsupports isostaticforceselem ] 
 
 
-
+% --------------------------------------------------------------------
 # Equilibrium matrix assembly
-# each row contains the coefficients of each equilibrium equation for the nodes
+# each row contains the coefficients of each equilibrium equation for 
+%   the corresponding dof at each nodes: 1x 1y 2x 2y ...
 # each column contains the coefficients corresponding to an unknown reaction
 #   or normal force
 Meq = zeros( 2*nnodes , nforceunknowns ) ;
 for i=1:nfixeddofs
-  Meq(fixeddofs(i),i) = 1.0 ;
+  Meq( fixeddofs(i), i ) = 1.0 ;
 end
 
 # stress
 for i=1:nelems
 
-  ang = Angles(i);
+  ang = Angles(i) ;
 
   elemdofs = nodes2dofs ( ElemConec(i,1:2)' ,2) ;
 
@@ -89,5 +104,8 @@ end
 Fext = zeros(2*nnodes,1);
 for i=1:size(NodalLoads,1)
   aux = nodes2dofs ( NodalLoads(i,1), 2 ) ;
-  Fext( aux ) = Fext( aux ) + NodalLoads(i,2:3)' ;
+  Fext( aux ) = Fext( aux ) + NodalLoads(i, 2:3)' ;
 end
+
+
+aux=input(' --- preprocess finished. press any key to continue... ');

@@ -15,6 +15,8 @@
 % You should have received a copy of the GNU General Public License
 % along with FMTS.  If not, see <https://www.gnu.org/licenses/>.
 
+fprintf('\n=== Plots ===\n')
+
 
 LW = 2;
 MS = 5;

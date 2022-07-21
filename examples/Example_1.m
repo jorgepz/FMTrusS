@@ -1,3 +1,20 @@
+% Copyright 2022, Jorge M. Perez Zerpa. 
+%
+% This file is part of FMTS.
+%
+% FMTS is free software: you can redistribute it and/or modify 
+% it under the terms of the GNU General Public License as published by 
+% the Free Software Foundation, either version 3 of the License, or 
+% (at your option) any later version. 
+%
+% FMTS is distributed in the hope that it will be useful, 
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+% GNU General Public License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with FMTS.  If not, see <https://www.gnu.org/licenses/>.
+
 
 % Example from chapter 2 of textbook https://gitlab.fing.edu.uy/jorgepz/libroResMat2/
 
@@ -5,39 +22,39 @@
 clear all, close all, addpath( [ pwd '/../src'] );
 
 % section properties: vector with the cross-section areas
-De = .1 ; Di = De - .005 ; 
-As = pi * ( De^2 - Di^2 ) / 4.0 ;
+As = [.001 .01 ]' ;
 
 % material properties: vector with young moduli values
 Es = [ 210e9 ] ;
 
 % coordinates (with origin in node B)
-NodsCoord = [  0 4 ;
-               0 0 ;
-               4 0 ] ;
+NodsCoord = [  0  0  ;
+               10 10 ;
+               10 0  ;
+               20 0  ] ;
 
 % connectiviy: i-node j-node material section
 ElemConec = [ 1 2 1 1 ;
-              2 3 1 1 ; ...
-              1 3 1 1 ] ;
+              3 2 1 2 ; ...
+              4 2 1 1 ] ;
 
-fixeddofs = [ 3 4 5 6 ] ;
+fixeddofs = [ 1 2 5 6 7 8 ] ;
 
 % matrix with nodal info per row:
 %             node fx fy
-NodalLoads = [ 1 50e3 0 ];
+NodalLoads = [ 2 10e3 0 ];
 
 # Deformed scale factor
 scalefactor = 1e3;
 
 # row vector with the dofs related to supports which are replaced by virtual forces
-virtualforcessupports = [ 4 ] ;
+virtualforcessupports = [  ] ;
 
 # row vector with the truss elements which are replaced by virtual forces
-virtualforceselements = [  ] ;
+virtualforceselements = [ 3 ] ;
 
 # degree of freedom whose displacement must be determined (leave empty if none)
-unkndispdof = 1 ;
+unkndispdof = 3 ;
 % -----------------------------
 
 
