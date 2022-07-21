@@ -23,6 +23,7 @@ ElemConec = [ 1 2 1 1 ;
 
 fixeddofs = [ 3 4 5 6 ] ;
 
+
 % matrix with nodal info per row:
 %             node fx fy
 NodalLoads = [ 1 50e3 0 ];
