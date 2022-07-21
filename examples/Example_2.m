@@ -5,8 +5,8 @@
 clear all, close all, addpath( [ pwd '/../src'] );
 
 % section properties: vector with the cross-section areas
-De = .1 ; Di = De - .005 ; 
-As = pi * ( De^2 - Di^2 ) / 4.0 ;
+De = .1 ; Di = De - 2*0.005 ;
+As = pi * ( De^2 - Di^2 ) / 4.0
 
 % material properties: vector with young moduli values
 Es = [ 210e9 ] ;
@@ -27,9 +27,6 @@ fixeddofs = [ 3 4 5 6 ] ;
 %             node fx fy
 NodalLoads = [ 1 50e3 0 ];
 
-# Deformed scale factor
-scalefactor = 1e3;
-
 # row vector with the dofs related to supports which are replaced by virtual forces
 virtualforcessupports = [ 3 ] ;
 
@@ -39,7 +36,6 @@ virtualforceselements = [  ] ;
 # degree of freedom whose displacement must be determined (leave empty if none)
 unkndispdof = 2 ;
 % -----------------------------
-
 
 Preprocess
 

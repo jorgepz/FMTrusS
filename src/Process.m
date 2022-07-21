@@ -1,13 +1,13 @@
-% Copyright 2022, Jorge M. Perez Zerpa. 
+% Copyright 2022, Jorge M. Perez Zerpa.
 %
 % This file is part of FMTS.
 %
-% FMTS is free software: you can redistribute it and/or modify 
-% it under the terms of the GNU General Public License as published by 
-% the Free Software Foundation, either version 3 of the License, or 
-% (at your option) any later version. 
+% FMTS is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
 %
-% FMTS is distributed in the hope that it will be useful, 
+% FMTS is distributed in the hope that it will be useful,
 % but WITHOUT ANY WARRANTY; without even the implied warranty of
 % MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 % GNU General Public License for more details.
@@ -22,15 +22,14 @@ ForceIndepTerm      = zeros( 2*nnodes, 1+hiperdegree);
 ForceIndepTerm(:,1) = - Fext  ;
 
 Meqred = Meq;
-
 virtualforces
-stop
 for j=1:hiperdegree
   ForceIndepTerm(:,1+j) = -Meq(:,virtualforces(j)) ;
   Meqred(:, virtualforces(j) ) = [] ;
 end
 
 ForceIndepTerm
+% equilibrium of all cannonical systems
 x = Meqred \ ForceIndepTerm
 
 supportreactions = zeros(nfixeddofs, hiperdegree+1) ;
@@ -78,13 +77,13 @@ X = Kf \ Ff
 
 ResultReactions = supportreactions * [ 1; X] ;
 
-ResultNormalForces = Ns * [ 1 ; X ] 
+ResultNormalForces = Ns * [ 1 ; X ]
 
 % complete vector of BC external forces (reactions)
 Rext = zeros( 2*nnodes,1) ;
 Rext(fixeddofs) = ResultReactions ;
 
-% 
+%
 Fextaux = zeros( 2*nnodes, 1 ) ;
 Fextaux( unkndispdof ) = 1 ;
 
