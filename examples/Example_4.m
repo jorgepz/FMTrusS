@@ -15,16 +15,16 @@
 % You should have received a copy of the GNU General Public License
 % along with FMTS.  If not, see <https://www.gnu.org/licenses/>.
 
-% ejercicio examen febrero 2021
+% Strength of Materials february 2021 exam. Exam available at https://eva.fing.edu.uy/pluginfile.php/8823/mod_folder/content/0/examen_2021_02_22_letra_y_solucion.pdf?forcedownload=1 for Universidad de la Republica students
 
-clear all, close all
+clear all, close all, addpath( [ pwd '/../src'] );
 
 l=5 ;
 
-problem_name = 'exam_fev2021_SM2'
+problem_name = 'exam_feb2021_SM2'
 
 % section properties: vector with the cross-section areas
-As = [ ( pi*.04^2/4  pi*(0.04 - 2*0.004)^2/4)  ]' ;
+As = [ ( pi*(0.04 - 2*0.004)^2/4)  ]' ;
 
 % material properties: vector with young moduli values
 Es = [ 210e9 ] ;

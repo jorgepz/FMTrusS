@@ -21,17 +21,26 @@ fprintf('\n=== Process ===\n')
 ForceIndepTerm      = zeros( 2*nnodes, 1+hiperdegree);
 ForceIndepTerm(:,1) = - Fext  ;
 
-Meqred = Meq;
+Meqred = Meq ;
+Meqred(:, virtualforces ) = [] ;
+
 virtualforces
 for j=1:hiperdegree
   ForceIndepTerm(:,1+j) = -Meq(:,virtualforces(j)) ;
-  Meqred(:, virtualforces(j) ) = [] ;
 end
 
-ForceIndepTerm
-% equilibrium of all cannonical systems
-x = Meqred \ ForceIndepTerm
 
+ForceIndepTerm
+
+detMeqred = det( Meqred )
+
+% equilibrium of all cannonical systems
+x = Meqred \ ForceIndepTerm ;
+
+normalForcesPerElement = x( (length(isostaticsupports)+1):end ,: )
+
+
+stop
 supportreactions = zeros(nfixeddofs, hiperdegree+1) ;
 
 supportreactions( isostaticsupports , : ) = x( 1:length(isostaticsupports) ,:)
