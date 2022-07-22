@@ -24,7 +24,7 @@ fprintf('\n=== Preprocess ===\n')
 % --------------------------------------------------------------------
 
 
-
+format compact
 
 % --- compute lengths and inclination of undeformed elements ---
 Lengths   =  sqrt ( sum( (  NodsCoord( ElemConec(:,2),:) - ...

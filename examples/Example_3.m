@@ -15,45 +15,45 @@
 % You should have received a copy of the GNU General Public License
 % along with FMTS.  If not, see <https://www.gnu.org/licenses/>.
 
-% Example from chapter 2 of textbook https://gitlab.fing.edu.uy/jorgepz/libroResMat2/
-
 % add src folder to path
 clear all, close all, addpath( [ pwd '/../src'] );
 
+problem_name = 'example_3'
+
 % section properties: vector with the cross-section areas
-As = [.001 .01 ]' ;
+As = 2e-4 ;
 
 % material properties: vector with young moduli values
-Es = [ 210e9 ] ;
+Es = [ 200e9 ] ;
 
-% coordinates (with origin in node B)
-NodsCoord = [  0  0  ;
-               10 10 ;
-               10 0  ;
-               20 0  ] ;
+NodsCoord = [ 0            1 ;
+              1/sqrt(3)    0 ;
+              1/sqrt(3)+1  1 ;
+              1            0 ] ;
 
-% connectiviy: i-node j-node material section
+% inode jnode material section
 ElemConec = [ 1 2 1 1 ;
-              3 2 1 2 ; ...
-              4 2 1 1 ] ;
+              1 4 1 1 ; ...
+              2 3 1 1 ; ...
+              2 4 1 1 ; ...
+              4 3 1 1 ] ;
 
-fixeddofs = [ 1 2 5 6 7 8 ] ;
+fixeddofs = [ 1 2 5 6 ] ;
 
-% matrix with nodal info per row:
-%             node fx fy
-NodalLoads = [ 2 10e3 0 ];
+NodalLoads = [ 2 0 -10e3 ; ...
+               4 0 -10e3 ];
 
 # Deformed scale factor
 scalefactor = 1e3;
 
 # row vector with the dofs related to supports which are replaced by virtual forces
-virtualforcessupports = [  ] ;
+virtualforcessupports = [ ] ;
 
 # row vector with the truss elements which are replaced by virtual forces
-virtualforceselements = [ 3 ] ;
+virtualforceselements = [ 4 ] ;
 
 # degree of freedom whose displacement must be determined (leave empty if none)
-unkndispdof = 3 ;
+unkndispdof = 4 ;
 % -----------------------------
 
 

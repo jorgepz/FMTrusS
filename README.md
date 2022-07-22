@@ -1,12 +1,12 @@
-# FMTS: an UNDER-VALIDATION Force Method Truss Solver
+# FMTS: a Force Method Truss Solver
 
 ## What is FMTS?
 
-FMTS is a GNU-Octave/Matlab code for solving 2D truss problems using the Force Method.
+FMTS is a GNU-Octave/Matlab code for solving 2D truss problems using the [Force Method](https://en.wikipedia.org/wiki/Unit_dummy_force_method).
 
 ## Why?
 
-The purpose of this repo is to provide an example of a computational implementation of the [Force Method](https://en.wikipedia.org/wiki/Unit_dummy_force_method) for 2D truss structures. The code is oriented to undergraduate Civil Engineering students, in particular students at [Facultad de Ingeniería, UdelaR](https://www.fing.edu.uy/) in Uruguay.
+The purpose of this repo is to provide an example of a computational implementation of the Force Method for 2D truss structures. The code is oriented to undergraduate Civil Engineering students, in particular students at [Facultad de Ingeniería, UdelaR](https://www.fing.edu.uy/) in Uruguay.
 
 ## How to use it?
 

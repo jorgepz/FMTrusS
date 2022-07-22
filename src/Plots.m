@@ -17,9 +17,7 @@
 
 fprintf('\n=== Plots ===\n')
 
-
-LW = 2;
-MS = 5;
+LW = 2; MS = 5;
 loadscfactor = max(  max(NodsCoord(:,1)) - min(NodsCoord(:,1)) , ...
                      max(NodsCoord(:,2)) - min(NodsCoord(:,2)) ) ...
                / max( abs(Fext) ) * 0.2 ;
@@ -47,4 +45,9 @@ for i=1:nelems
     ,'color',colornormalforce, 'fontsize', 14);
 end
 axis equal, xlabel('x'), ylabel('y')
+
 title('Forces results: green: external loads, red: support reactions and blue normal forces.')
+
+if exist( 'problem_name' ) ~= 0 
+  print( '-dpng', [ problem_name '.png' ] )
+end
