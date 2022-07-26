@@ -1,0 +1,14 @@
+
+name: tests
+on: [push, pull_request]
+
+jobs:
+  tests:
+    runs-on: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - name: run tests
+        uses: joergbrech/moxunit-action@v1.1
+        with:
+          src: examples src test
+          tests: ./test/run_test_problems_moxunit.m
