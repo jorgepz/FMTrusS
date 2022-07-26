@@ -15,55 +15,60 @@
 % You should have received a copy of the GNU General Public License
 % along with FMTS.  If not, see <https://www.gnu.org/licenses/>.
 
-% Example from chapter 2 of textbook https://gitlab.fing.edu.uy/jorgepz/libroResMat2/
+% Strength of Materials february 2021 exam. Exam available at https://eva.fing.edu.uy/pluginfile.php/8823/mod_folder/content/0/examen_2021_02_22_letra_y_solucion.pdf?forcedownload=1 for Universidad de la Republica students
 
-% add src folder to path
 clear all, close all, addpath( [ pwd '/../src'] );
 
+l=5 ;
+
+problem_name = 'exam_feb2021_SM2'
+
 % section properties: vector with the cross-section areas
-As = [.001 .01 ]' ;
+As = [ ( pi*(0.04 - 2*0.004)^2/4)  ]' ;
 
 % material properties: vector with young moduli values
 Es = [ 210e9 ] ;
 
-% coordinates (with origin in node B)
-NodsCoord = [  0  0  ;
-               10 10 ;
-               10 0  ;
-               20 0  ] ;
+% nodal coordinates
+NodsCoord = [ 0    l  ;
+              l    l  ;
+              2*l  l  ;
+              3*l  l  ;
+              l    0  ;
+              2*l  0  ] ;
 
-% connectiviy: i-node j-node material section
-ElemConec = [ 1 2 1 1 ;
-              3 2 1 2 ; ...
-              4 2 1 1 ] ;
+% inode jnode material section
+ElemConec = [ 1 2  1 1 ;
+              2 3  1 1 ; ...
+              3 4  1 1 ; ...
+              1 5  1 1 ; ...
+              5 6  1 1 ; ...
+              6 4  1 1 ; ...
+              5 2  1 1 ; ...
+              6 3  1 1 ; ...
+              2 6  1 1 ; ...
+              5 3  1 1 ] ;
 
-fixeddofs = [ 1 2 5 6 7 8 ] ;
+fixeddofs = [ 1  10  11 12 ] ;
 
-% matrix with nodal info per row:
-%             node fx fy
-NodalLoads = [ 2 10e3 0 ];
-
-# Deformed scale factor
-scalefactor = 1e3;
+NodalLoads = [ 4 0 -50e3 ];
 
 # row vector with the dofs related to supports which are replaced by virtual forces
-virtualforcessupports = [  ] ;
+virtualforcessupports = [ 1 ] ;
 
 # row vector with the truss elements which are replaced by virtual forces
-virtualforceselements = [ 3 ] ;
+virtualforceselements = [ 9 ] ; 
 
 # degree of freedom whose displacement must be determined (leave empty if none)
-unkndispdof = 3 ;
+unkndispdof = 7 ;
 % -----------------------------
 
 
 Preprocess
 
 %% 3- Process
-% Equilibrium equations solved, flexibility matrix assembly and
-% virtual forces determined.
 Process
 
 %% 4- Output
-% Plot of truss structure with reactions, normal forces and external loads.
 Plots
+

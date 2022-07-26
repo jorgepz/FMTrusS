@@ -21,14 +21,13 @@ fprintf('\n    - Reactions are assumed positive in the corresponding x/y directi
 
 fprintf('\n=== Preprocess ===\n')
 
-% --------------------------------------------------------------------
+% -----------------------------------------------------------
 
-
-
+format compact
 
 % --- compute lengths and inclination of undeformed elements ---
-Lengths   =  sqrt ( sum( (  NodsCoord( ElemConec(:,2),:) - ...
-                            NodsCoord( ElemConec(:,1),:) ).^2 , 2 ) )
+Lengths =  sqrt( sum( ( NodsCoord( ElemConec(:,2),:) - ...
+                        NodsCoord( ElemConec(:,1),:) ).^2 , 2 ) )
 
 Angles = atan2( ( NodsCoord( ElemConec(:,2),2) - NodsCoord( ElemConec(:,1),2) ) , ...
                 ( NodsCoord( ElemConec(:,2),1) - NodsCoord( ElemConec(:,1),1) ) )
@@ -39,24 +38,24 @@ nnodes = size( NodsCoord,1);   nelems = size( ElemConec,1);
 
 nfixeddofs = length(fixeddofs) ;
 
-# computes the total number of force unknowns (element stress and reactions)
+% computes the total number of force unknowns (element stress and reactions)
 nforceunknowns = nfixeddofs + nelems ; % of the full structure
 hiperdegree = nforceunknowns - 2*nnodes
 
 % compute free dofs of the full structure
 freedofs = 1:(2*nnodes) ; freedofs(fixeddofs) = []
 
-# row vector with the indexes of the dofs of the supports left in the isostatic structure
+% row vector with the indexes of the dofs of the supports left in the isostatic structure
 isostaticsupports = 1:nfixeddofs ;
-if length(virtualforcessupports)>0
+if length( virtualforcessupports ) > 0
   # deletes the entries corresponding to the supports which are replaced by virtual forces
   isostaticsupports( find( fixeddofs == virtualforcessupports) ) = [] ;
 end
 
 % fixed dofs of fundamental cannonical structure
-fixeddofs(isostaticsupports)
+fixeddofs( isostaticsupports )
 
-# assembles the vector of virtual force states, first the fixed dofs and after the truss elements normal forces.
+% assembles the vector of virtual force states, first the fixed dofs and after the truss elements normal forces.
 if length( virtualforcessupports ) > 0
   virtualforces  = [ find( fixeddofs == virtualforcessupports) ...
   virtualforceselements+nfixeddofs ] ;
@@ -76,12 +75,15 @@ isostaticforceselem = isostaticforceselem + nfixeddofs ;
 % elements) present in the isostatic fundamental structure
 isostaticforces = [ isostaticsupports isostaticforceselem ]
 
-% --------------------------------------------------------------------
-# Equilibrium matrix assembly
+% --------------------------------------------------------
+# Equilibrium system assembly
+%
+% Equilibrium :  Meq * X + Fext = 0
+%
 # each row contains the coefficients of each equilibrium equation for
 %   the corresponding dof at each nodes: 1x 1y 2x 2y ...
-# each column contains the coefficients corresponding to an unknown reaction
-#   or normal force
+% each column contains the coefficients corresponding to an unknown reaction
+%   or normal force
 Meq = zeros( 2*nnodes , nforceunknowns ) ;
 
 % include reactions components in equi equation
@@ -106,9 +108,4 @@ for i=1:size(NodalLoads,1)
   aux = nodes2dofs ( NodalLoads(i,1), 2 ) ;
   Fext( aux ) = Fext( aux ) + NodalLoads(i, 2:3)' ;
 end
-
-% equi equ :  Meq * X + Fext = 0
-
-pruebaMF = Meq \ (-Fext)
-
-%aux=input(' --- preprocess finished. press any key to continue... ');
+% --------------------------------------------------------
