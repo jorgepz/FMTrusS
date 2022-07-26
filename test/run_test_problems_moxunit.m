@@ -9,5 +9,5 @@ function test_suite=run_test_problems_moxunit
   initTestSuite;
 
 function test_1
-
-  assertEqual( true, true );
+  Example_4
+  assertEqual( verif_boolean, true );
