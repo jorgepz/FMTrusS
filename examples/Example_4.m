@@ -24,7 +24,7 @@ l=5 ;
 problem_name = 'exam_feb2021_SM2'
 
 % section properties: vector with the cross-section areas
-As = [ ( pi*(0.04 - 2*0.004)^2/4)  ]' ;
+As = [  pi*( (0.04)^2 - ( .04- 2*0.004)^2)/4  ]' ;
 
 % material properties: vector with young moduli values
 Es = [ 210e9 ] ;
@@ -76,11 +76,11 @@ Ns_sol( [ 3 5 6 8   10 ], 1 ) = [ 50e3; -50e3; -50e3*sqrt(2); -50e3; 50e3*sqrt(2
 Ns_sol( [ 1 2 5 8   10 ], 2 ) = [ -1; -1; -1; -1; 1*sqrt(2) ] ;
 Ns_sol( [ 2 5 7 8 9 10 ], 3 ) = [ -1/sqrt(2); -1/sqrt(2); -1/sqrt(2); -1/sqrt(2); 1; 1 ] ;
 
-disp_sol = 3.42e-3 ;
+disp_sol = 0.006072 ;
 
 verif_boolean = ( norm( Ns - Ns_sol ) < 1e-6 ) && ( abs( disp - disp_sol ) < ( 1e-2*disp_sol ) )
 
-% scale_factor = 10;
+% scalefactor = 10;
 % FEMTrusS
 
 
