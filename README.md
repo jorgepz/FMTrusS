@@ -6,7 +6,9 @@
 
 ## What is FMTS?
 
-FMTS is a GNU-Octave code for solving 2D truss problems using the [Force Method](https://en.wikipedia.org/wiki/Unit_dummy_force_method).
+FMTS is a GNU-Octave code for solving 2D truss problems using the [Force Method](https://en.wikipedia.org/wiki/Unit_dummy_force_method). The main variables are normal forces in truss elements, and support reactions. The code generates simple plots like this on 
+
+![fig example 1](examples/Example_1_forces.png)
 
 ## Why?
 

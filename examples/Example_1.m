@@ -20,6 +20,8 @@
 % add src folder to path
 clear all, close all, addpath( [ pwd '/../src'] );
 
+problem_name = 'Example_1'
+
 % section properties: vector with the cross-section areas
 As = [.001 .01 ]' ;
 
@@ -43,9 +45,6 @@ fixeddofs = [ 1 2 5 6 7 8 ] ;
 %             node fx fy
 NodalLoads = [ 2 10e3 0 ];
 
-# Deformed scale factor
-scalefactor = 1e3;
-
 # row vector with the dofs related to supports which are replaced by virtual forces
 virtualforcessupports = [  ] ;
 
@@ -67,3 +66,9 @@ Process
 %% 4- Output
 % Plot of truss structure with reactions, normal forces and external loads.
 Plots
+
+% solution by hand with rounding errors as in the book
+X_sol = -7071 ;      
+disp_sol = 6.74e-4 ;
+
+verif_boolean = ( abs( X - X_sol ) < abs(1e-3*X_sol) ) && ( abs( disp - disp_sol) < abs(1e-3*disp_sol)  )
