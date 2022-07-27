@@ -71,4 +71,4 @@ Plots
 X_sol = -7071 ;      
 disp_sol = 6.74e-4 ;
 
-verif_boolean = ( abs( X - X_sol ) < (1e-3*X_sol) ) && ( abs( disp - disp_sol) < (1e-3*disp_sol)  )
+verif_boolean = ( abs( X - X_sol ) < abs(1e-3*X_sol) ) && ( abs( disp - disp_sol) < abs(1e-3*disp_sol)  )
