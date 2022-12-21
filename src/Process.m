@@ -106,4 +106,3 @@ sum( ResultNormalForces .* Nsaux .* Lengths )
 disp = sum( ResultNormalForces .* Nsaux ./ ( Youngs .* Areas ) .* Lengths )
 
 
-verif_boolean = norm( ResultNormalForces - [0;0;0;-5;-5] ) < 1e-8

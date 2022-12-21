@@ -1,12 +1,12 @@
-# FMTS: a Force Method Truss Solver
+# FMS: a Force Method Solver
 
-![tests](https://github.com/jorgepz/Force-Method-TrusS/workflows/tests/badge.svg)
-[![License](https://img.shields.io/badge/License-GPLv3-green.svg)](https://github.com/jorgepz/Force-Method-TrusS/blob/main/LICENSE)
+![tests](https://github.com/jorgepz/Force-Method-Solver/workflows/tests/badge.svg)
+[![License](https://img.shields.io/badge/License-GPLv3-green.svg)](https://github.com/jorgepz/Force-Method-Solver/blob/main/LICENSE)
 
 
-## What is FMTS?
+## What is FMS?
 
-FMTS is a GNU-Octave code for solving 2D truss problems using the [Force Method](https://en.wikipedia.org/wiki/Unit_dummy_force_method). The main variables are normal forces in truss elements, and support reactions. The code generates simple plots like this on 
+FMS is a GNU-Octave code for solving 2D truss problems using the [Force Method](https://en.wikipedia.org/wiki/Unit_dummy_force_method). The main variables are normal forces in truss elements, and support reactions. The code generates simple plots like this on 
 
 ![fig example 1](examples/Example_1_forces.png)
 
@@ -16,7 +16,7 @@ The purpose of this repo is to provide an example of a computational implementat
 
 ## How to use it?
 
- 1. download and unzip the code https://github.com/jorgepz/Force-Method-TrusS/archive/refs/heads/main.zip
+ 1. download and unzip the code https://github.com/jorgepz/Force-Method-Solver/archive/refs/heads/main.zip
  1. open GNU-Octave or Matlab and move to the `examples` folder and run one of the scripts
 
 ## How it works?

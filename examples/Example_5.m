@@ -63,16 +63,6 @@ Process
 %% 4- Output
 Plots
 
-% Ns_sol = zeros( 10,3) ;
-% Ns_sol( [ 3 5 6 8   10 ], 1 ) = [ 50e3; -50e3; -50e3*sqrt(2); -50e3; 50e3*sqrt(2) ] ;
-% Ns_sol( [ 1 2 5 8   10 ], 2 ) = [ -1; -1; -1; -1; 1*sqrt(2) ] ;
-% Ns_sol( [ 2 5 7 8 9 10 ], 3 ) = [ -1/sqrt(2); -1/sqrt(2); -1/sqrt(2); -1/sqrt(2); 1; 1 ] ;
-
-% disp_sol = 0.006072 ;
-
-% verif_boolean = ( norm( Ns - Ns_sol ) < 1e-6 ) && ( abs( disp - disp_sol ) < ( 1e-2*disp_sol ) )
-
-% scalefactor = 10;
-% FEMTrusS
+verif_boolean = norm( ResultNormalForces - [0;0;0;-5;-5] ) < 1e-8 ;
 
 
