@@ -60,9 +60,9 @@ supportreactions
 Ns = zeros( nelems, hiperdegree+1 ) ;
 Ns(  isostaticforceselem - nfixeddofs , : ) = normalForcesPerElement ;
 if length( virtualforceselements ) > 0
-virtualforceselements
+  virtualforceselements
   for i=1:length(virtualforceselements)
-    Ns(virtualforceselements,i+1+length(virtualforcessupports)) = 1 ;
+    Ns( virtualforceselements(i), i+1+length(virtualforcessupports) ) = 1 ;
   end
 end
 
@@ -104,3 +104,5 @@ Nsaux( isostaticforceselem- nfixeddofs ) = xaux ( (length(isostaticsupports)+1):
 ResultNormalForces .* Nsaux .* Lengths
 sum( ResultNormalForces .* Nsaux .* Lengths )
 disp = sum( ResultNormalForces .* Nsaux ./ ( Youngs .* Areas ) .* Lengths )
+
+

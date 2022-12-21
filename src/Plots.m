@@ -46,7 +46,7 @@ for i=1:nelems
 end
 axis equal, xlabel('x'), ylabel('y')
 
-title('Forces: green: external loads, red: support reactions, blue: normal forces.')
+title('Forces - Arrows: green: external, red: reactions // Normal: blue: tension, red: compression.')
 if exist( 'problem_name' ) ~= 0 
   print( '-dpng', [ problem_name '_forces.png' ] )
 end

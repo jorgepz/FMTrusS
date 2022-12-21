@@ -12,7 +12,10 @@ function test_1
   Example_1
   assertEqual( verif_boolean, true );
 
-function test_4
+function test_2
   Example_4
   assertEqual( verif_boolean, true );
 
+function test_3
+  Example_5
+  assertEqual( verif_boolean, true );
