@@ -62,7 +62,7 @@ Ns(  isostaticforceselem - nfixeddofs , : ) = normalForcesPerElement ;
 if length( virtualforceselements ) > 0
   virtualforceselements
   for i=1:length(virtualforceselements)
-    Ns( virtualforceselements(i), i+1+length(virtualforcessupports) ) = 1 ;
+    Ns( virtualforceselements(i), i+1+length(virtualforcessupports) ) = 2 ;
   end
 end
 
