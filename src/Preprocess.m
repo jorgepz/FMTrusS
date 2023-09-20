@@ -32,7 +32,7 @@ Lengths =  sqrt( sum( ( NodsCoord( ElemConec(:,2),:) - ...
 Angles = atan2( ( NodsCoord( ElemConec(:,2),2) - NodsCoord( ElemConec(:,1),2) ) , ...
                 ( NodsCoord( ElemConec(:,2),1) - NodsCoord( ElemConec(:,1),1) ) )
 
-Areas   = As( ElemConec(:,4) ) ;  Youngs  = Es( ElemConec(:,3) ) ;
+Areas   = As( ElemConec(:,4) ) ;  Youngs  = Es( ElemConec(:,3) ) ; Areas = Areas(:);
 
 nnodes = size( NodsCoord,1);   nelems = size( ElemConec,1);
 
