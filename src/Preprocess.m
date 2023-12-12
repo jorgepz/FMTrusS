@@ -47,12 +47,16 @@ freedofs = 1:(2*nnodes) ; freedofs(fixeddofs) = []
 
 % row vector with the indexes of the dofs of the supports left in the isostatic structure
 isostaticsupports = 1:nfixeddofs ;
+dofsToRemove = [] ;
 if length( virtualforcessupports ) > 0
-  for i=1:length(virtualforcessupports) 
+  for i=1:length(virtualforcessupports)
     % deletes the entries corresponding to the supports which are replaced by virtual forces
-    isostaticsupports( find( fixeddofs == virtualforcessupports(i)) ) = [] ;
+    dofsToRemove = [ dofsToRemove find( fixeddofs == virtualforcessupports(i)) ] ;
   end
 end
+
+isostaticsupports( dofsToRemove ) = [] ;
+
 
 % fixed dofs of fundamental cannonical structure
 fixeddofs( isostaticsupports )

@@ -37,13 +37,13 @@ ElemConec = [ 1 2  1 1 ;
               1 3  1 1 ; ...
               2 3  1 1 ] ;
 
-fixeddofs = [ 1*2  2*2-1   2*2  3*2-1  ] ;
+fixeddofs = [ 1*2-1 1*2   2*2-1 2*2  3*2-1  ] ;
 
 NodalLoads = [ 3 0 -1 ; 
                1 1 0 ];
 
 # row vector with the dofs related to supports which are replaced by virtual forces
-virtualforcessupports = [ 3*2-1 ] ;
+virtualforcessupports = [ 1*2-1  3*2-1 ] ;
 
 # row vector with the truss elements which are replaced by virtual forces
 virtualforceselements = [  ] ; 
@@ -59,3 +59,5 @@ Process
 
 %% 4- Output
 Plots
+
+verif_boolean = abs( ( ResultNormalForces(3)/sqrt(2)+ResultNormalForces(2) ) + 1 ) < 1e-8 ;
