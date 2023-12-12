@@ -16,8 +16,8 @@
 % along with FMTS.  If not, see <https://www.gnu.org/licenses/>.
 
 % add src folder to path
-clear all, close all, addpath( [ pwd '/../src'] );
-
+close all, if ~strcmp( getenv('TESTS_RUN'), 'yes'), clear all, end
+addpath( [ pwd '/../src'] );
 problem_name = 'example_3'
 
 % section properties: vector with the cross-section areas

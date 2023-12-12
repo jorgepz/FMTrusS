@@ -17,8 +17,8 @@
 
 % Strength of Materials february 2021 exam. Exam available at https://eva.fing.edu.uy/pluginfile.php/8823/mod_folder/content/0/examen_2021_02_22_letra_y_solucion.pdf?forcedownload=1 for Universidad de la Republica students
 
-clear all, close all, addpath( [ pwd '/../src'] );
-
+close all, if ~strcmp( getenv('TESTS_RUN'), 'yes'), clear all, end
+addpath( [ pwd '/../src'] );
 l=5 ;
 
 problem_name = 'exam_feb2021_SM2'

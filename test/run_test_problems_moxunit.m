@@ -6,6 +6,9 @@ function test_suite=run_test_problems_moxunit
     test_functions=localfunctions()
   catch
   end
+
+  setenv('TESTS_RUN', 'yes') 
+  
   initTestSuite;
 
 function test_1

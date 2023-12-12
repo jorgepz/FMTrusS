@@ -15,7 +15,8 @@
 % You should have received a copy of the GNU General Public License
 % along with FMTS.  If not, see <https://www.gnu.org/licenses/>.
 
-clear all, close all, addpath( [ pwd '/../src'] );
+close all, if ~strcmp( getenv('TESTS_RUN'), 'yes'), clear all, end
+addpath( [ pwd '/../src'] );
 
 l=1 ;
 

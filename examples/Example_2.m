@@ -2,8 +2,8 @@
 % Example from chapter 2 of textbook https://gitlab.fing.edu.uy/jorgepz/libroResMat2/
 
 % add src folder to path
-clear all, close all, addpath( [ pwd '/../src'] );
-
+close all, if ~strcmp( getenv('TESTS_RUN'), 'yes'), clear all, end
+addpath( [ pwd '/../src'] );
 % section properties: vector with the cross-section areas
 De = .1 ; Di = De - 2*0.005 ;
 As = pi * ( De^2 - Di^2 ) / 4.0

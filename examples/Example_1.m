@@ -18,7 +18,8 @@
 % Example from chapter 2 of textbook https://gitlab.fing.edu.uy/jorgepz/libroResMat2/
 
 % add src folder to path
-clear all, close all, addpath( [ pwd '/../src'] );
+close all, if ~strcmp( getenv('TESTS_RUN'), 'yes'), clear all, end
+addpath( [ pwd '/../src'] );
 
 problem_name = 'Example_1'
 
