@@ -19,3 +19,5 @@ function test_2
 function test_3
   Example_5
   assertEqual( verif_boolean, true );
+
+  

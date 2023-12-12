@@ -48,20 +48,23 @@ freedofs = 1:(2*nnodes) ; freedofs(fixeddofs) = []
 % row vector with the indexes of the dofs of the supports left in the isostatic structure
 isostaticsupports = 1:nfixeddofs ;
 if length( virtualforcessupports ) > 0
-  # deletes the entries corresponding to the supports which are replaced by virtual forces
-  isostaticsupports( find( fixeddofs == virtualforcessupports) ) = [] ;
+  for i=1:length(virtualforcessupports) 
+    % deletes the entries corresponding to the supports which are replaced by virtual forces
+    isostaticsupports( find( fixeddofs == virtualforcessupports(i)) ) = [] ;
+  end
 end
 
 % fixed dofs of fundamental cannonical structure
 fixeddofs( isostaticsupports )
 
 % assembles the vector of virtual force states, first the fixed dofs and after the truss elements normal forces.
+virtualforces = [] ;
 if length( virtualforcessupports ) > 0
-  virtualforces  = [ find( fixeddofs == virtualforcessupports) ...
-  virtualforceselements+nfixeddofs ] ;
-else
-  virtualforces  = [ virtualforceselements+nfixeddofs ] ;
+  for i=1:length(virtualforcessupports) 
+    virtualforces  =  [ virtualforces find( fixeddofs == virtualforcessupports(i)) ] ;
+  end
 end
+virtualforces  = [ virtualforces virtualforceselements+nfixeddofs ] ;
 
 % number of index of virtual unknown force
 virtualforces

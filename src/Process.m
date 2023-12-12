@@ -45,12 +45,14 @@ supportreactions = zeros( nfixeddofs, hiperdegree+1 ) ;
 
 supportreactions( isostaticsupports , : ) = x( 1:length(isostaticsupports) ,:)
 if length( virtualforcessupports ) > 0
-  aux = find( fixeddofs == virtualforcessupports) ;
-  for j=1:length( aux )
-    j
-    aux
-    supportreactions
-    supportreactions( aux(j),1+j ) = 1 ;
+  for i=1:length(virtualforcessupports)
+    aux = find( fixeddofs == virtualforcessupports(i) ) ;
+    for j=1:length( aux )
+      j
+      aux
+      supportreactions
+      supportreactions( aux(j),1+j ) = 1 ;
+    end
   end
 end
 
