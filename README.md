@@ -2,7 +2,7 @@
 
 ![tests](https://github.com/jorgepz/Force-Method-Solver/workflows/tests/badge.svg)
 [![License](https://img.shields.io/badge/License-GPLv3-green.svg)](https://github.com/jorgepz/Force-Method-Solver/blob/main/LICENSE)
-
+[![codecov](https://codecov.io/gh/jorgepz/Force-Method-Solver/graph/badge.svg?token=B6O9A0JBV0)](https://codecov.io/gh/jorgepz/Force-Method-Solver)
 
 ## What is FMS?
 
