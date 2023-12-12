@@ -10,5 +10,10 @@ jobs:
       - name: run tests
         uses: joergbrech/moxunit-action@v1.1
         with:
-          src: examples src test
+          src: .
           tests: ./test/run_test_problems_moxunit.m
+          with_coverage: true
+          cover_xml_file: coverage.xml
+      - uses: codecov/codecov-action@v3
+        with:
+          file: ./coverage.xml
