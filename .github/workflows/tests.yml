@@ -6,9 +6,9 @@ jobs:
   tests:
     runs-on: [ubuntu-latest]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: run tests
-        uses: joergbrech/moxunit-action@v1.1
+        uses: joergbrech/moxunit-action@v1.3.0
         with:
           src: .
           tests: ./test/run_test_problems_moxunit.m
